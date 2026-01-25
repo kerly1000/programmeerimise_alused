@@ -21,6 +21,6 @@ else:
     answer = int(input(f"Sisesta vastus- {num_1}+{num_2}+{num_3}= "))
     right_answer = num_1 + num_2 + num_3
     if answer == right_answer:
-        print("Tubli! Õige vastus!")
+        print("Tubli! See on õige vastus!")
     else:
         print(f"Vale vastus! Õige on {right_answer}.")

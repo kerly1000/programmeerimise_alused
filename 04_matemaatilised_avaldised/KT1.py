@@ -2,7 +2,7 @@
 2.       Väikseim arv korruta kahega
 3.       Küsi kasutajalt arvude ruute ühest kuni eelmise sammu tulemuseni (Kordus)
 4.       Teata kas kasutaja vastas õigesti või valesti
-5.       Teata mitu korda kasutaja vastas õigesti."""
+5.       Teata mitu korda vastas õigesti."""
 
 
 def squares() -> int:
