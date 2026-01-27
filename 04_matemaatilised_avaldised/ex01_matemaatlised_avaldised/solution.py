@@ -25,44 +25,44 @@ def powerful_operations(num_a: int, num_b: int) -> tuple:
     """Return the product of given variables, num_a to the power of num_b and the remainder of division of variables."""
     multiply_numbers = num_a * num_b
     power = num_a ** num_b
-    remainder = num_a % num_b# Write your code here
+    remainder = num_a % num_b
     return multiply_numbers, power, remainder
 
 
 def find_average(num_a: int, num_b: int) -> float:
     """Return the average of given variables."""
-    average = (num_a + num_b)/2
+    average = (num_a + num_b) / 2
     return average
 
 
 def area_of_a_circle(radius: float) -> float:
     """Calculate and return the area of a circle."""
     from math import pi
-    circle_area = radius ** 2 * pi# Write your code here
+    circle_area = radius ** 2 * pi
     return round(circle_area, 2)
 
 
 def area_of_an_equilateral_triangle(side_length: float) -> int:
     """Calculate and return the area of an equilateral triangle."""
-    triangle_area = math.sqrt(3) / 4 * side_length ** 2# Write your code here
+    triangle_area = math.sqrt(3) / 4 * side_length ** 2  # Write your code here
     return round(triangle_area)
 
 
 def calculate_discriminant(a: int, b: int, c: int) -> int:
     """Calculate discriminant with given variables and return the result."""
-    # Write your code here
+    discriminant = b ** 2 - 4 * a * c  # Write your code here
     return discriminant
 
 
 def calculate_hypotenuse_length(a: int, b: int) -> float:
     """Return the length of hypotenuse when the lengths of the catheti are given."""
-    # Write your code here
+    c = math.sqrt((a ** 2 + b ** 2))  # Write your code here
     return c
 
 
 def calculate_cathetus_length(a: int, c: int) -> float:
     """Return the length of cathetus when the lengths of the second cathetus and hypotenuse are given."""
-    # Write your code here
+    b = math.sqrt((c ** 2 - a ** 2))  # Write your code here
     return b
 
 if __name__ == '__main__':
@@ -95,5 +95,6 @@ if __name__ == '__main__':
 
     area_of_a_circle_result = area_of_a_circle(3)
     assert 28.269 < area_of_a_circle_result < 28.271
+
 
 

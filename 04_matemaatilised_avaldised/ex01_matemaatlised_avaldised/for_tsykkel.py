@@ -68,8 +68,10 @@ def multiply_between(start: int, end: int) -> int:
     print(multiply_between(4, 14)) => 14529715200
     print(multiply_between(0, 7)) => 0
     """
-    # Your code goes here
-
+    total = 1
+    for i in range(start, end + 1):
+        total *= i
+    return total
 
 def make_hola_string(count: int) -> str:
     """
@@ -78,7 +80,10 @@ def make_hola_string(count: int) -> str:
     print(make_hola_string(3)) => "holaholahola"
     print(make_hola_string(0)) => ""
     """
-    # Your code goes here
+    total = ""
+    for _ in range(count):
+        total += "hola"
+    return total
 
 
 def compound_interest(amount: int, years: int, rate: int) -> float:
@@ -88,7 +93,11 @@ def compound_interest(amount: int, years: int, rate: int) -> float:
     print(compound_interest(100, 2, 2)) => 104.04
     print(compound_interest(2000, 6, 8)) => 3173.748645888
     """
-    # Your code goes here
+    total = float(amount)
+    for _ in range(1, years + 1):
+        total *= (1 + rate) ** years
+    return total
+
 
 
 def remove_vowels(original_string: str) -> str:
@@ -99,7 +108,12 @@ def remove_vowels(original_string: str) -> str:
     print(remove_vowels("hklmn")) => hklmn
     print(remove_vowels("aauuiii")) => ""
     """
-    # Your code goes here
+    vowels = "aeiouõäöüAEIOUÕÄÖÜ"
+    total = ""
+    for letter in original_string:
+        if letter not in vowels:
+            total += letter
+    return total
 
 
 if __name__ == '__main__':
