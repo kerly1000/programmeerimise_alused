@@ -51,32 +51,138 @@ Kus:
 7. Programm peab töötama tsüklis kuni kasutaja valib "0 - Välju"
 """
 
-def sells_data_main():
-    a = input("Palun vali toiming ja sisesta vastav number. \n1- soovin näha kõiki tooteid "
+def main_menu():
+
+
+    while True:
+        a = input("Palun vali toiming ja sisesta vastav number. \n1- soovin näha kõiki tooteid "
               "\n2- soovin otsida toodet \n3- soovin analüüsida kategoriaid "
               "\n4- soovin salvestada kokkuvõtet \n0- välju \nSoovin: ")
 
-    file = open("müük.txt", "r")
-    content = file.read()
-
-    while True:
         if a == "1": #kuva kõik tehingud
-            print(content)
-            break
+            total_sale = 0
+            with open("müük.txt", "r", encoding="utf-8") as file:
+                for line in file:
+                    products = line.strip().split(";")
 
-        if a == "2": #otsi toodet
-            print("not ok")
+                    quantity = int(products[2])
+                    price = float(products[3])
+                    total = float(quantity * price)
 
-        if a == "3": #kategooriate analüüs
-            print("ok")
+                    total_sale += total
 
-        if a == "4": #salvesta kokkuvõte
-            print("kokkuvõte")
-        if a == "0":
+                    print(f"{line.strip()}, Kokku müük: {total:.2} €")
+            print(f"Kogumüük: {total_sale}")
+
+        elif a == "2": #otsi toodet
+            search = input("Sisesta toote nimi: ").lower()
+
+            total_quantity = 0
+            total_revenue = 0
+
+            with open("müük.txt", "r", encoding="utf-8") as file:
+                for line in file:
+                    products = line.strip().split(";")
+
+                    product = products[0].lower()
+                    quantity = int(products[2])
+                    price = float(products[3])
+
+                    if product == search:
+                        total = quantity * price
+
+                        print(f"{line.strip()}, Kokku: {total:.2} €")
+
+                        total_quantity += quantity
+                        total_revenue += total
+
+                        print(f"Müüdud kokku {total_quantity} tükki")
+                        print(f"Toote müügitulu kokku: {total_revenue:.2} €")
+
+
+        elif a == "3": #kategooriate analüüs
+            categories = {}
+
+            with open("müük.txt", "r", encoding="utf-8") as file:
+                for line in file:
+                    products = line.strip().split(";")
+
+                    category = products[1]
+                    quantity = int(products[2])
+                    price = float(products[3])
+                    total = quantity * price
+
+                    if category not in categories:
+                        categories[category] = {"count": 0, "revenue": 0}
+
+                    categories[category]["count"] += 1
+                    categories[category]["revenue"] += total
+
+            max_category = ""
+            max_revenue = 0
+
+            for cat in categories:
+                count = categories[cat]["count"]
+                revenue = categories[cat]["revenue"]
+
+                print(f"{cat}:")
+                print(f"Tehingute arv: {count}")
+                print(f"Kogutulu: {revenue:.2f} €")
+
+                if revenue > max_revenue:
+                    max_revenue = revenue
+                    max_category = cat
+
+            print(f"Kõige tulusam kategooria on: {max_category} müügisummaga {max_revenue:.2f}")
+
+        elif a == "4": #salvesta kokkuvõte
+            total_revenue = 0
+            total_transactions = 0
+            products = set()
+
+            categories = {}
+
+            with open("müük.txt", "r", encoding="utf-8") as file:
+                for line in file:
+                    parts = line.strip().split(";")
+
+                    product = parts[0]
+                    category = parts[1]
+                    quantity = int(parts[2])
+                    price = float(parts[3])
+
+                    total = quantity * price
+
+                    total_revenue += total
+                    total_transactions += 1
+                    products.add(product)
+
+                    if category not in categories:
+                        categories[category] = [0, 0]
+
+                    categories[category][0] += 1
+                    categories[category][1] += total
+
+            best_category = ""
+            best_revenue = 0
+
+            for cat in categories:
+                if categories[cat][1] > best_revenue:
+                    best_revenue = categories[cat][1]
+                    best_category = cat
+
+            with open("müük_kokkuvõte.txt", "w", encoding="utf-8") as file:
+                file.write(f"Tehingute koguarv: {total_transactions}\n")
+                file.write(f"Kogu müügitulu: {total_revenue:.2f} €\n")
+                file.write(f"Erinevate toodete arv: {len(products)}\n")
+                file.write(f"Kõige tulutoovam kategooria: {best_category} ({best_revenue:.2f} €)\n")
+
+            print("Kokkuvõte salvestatud faili müük_kokkuvõte.txt")
+
+        elif a == "0":
                 print("Programm suletud!")
                 break
 
 
-
 if __name__ == '__main__':
-    sells_data_main()
+    main_menu()

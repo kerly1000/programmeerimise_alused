@@ -1,0 +1,4 @@
+Tehingute koguarv: 10
+Kogu müügitulu: 30.40 €
+Erinevate toodete arv: 6
+Kõige tulutoovam kategooria: Piimatooted (15.00 €)
