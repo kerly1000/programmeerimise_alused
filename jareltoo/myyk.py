@@ -50,20 +50,32 @@ Kus:
 
 7. Programm peab töötama tsüklis kuni kasutaja valib "0 - Välju"
 """
-from os import close
-
 
 def sells_data_main():
     a = input("Palun vali toiming ja sisesta vastav number. \n1- soovin näha kõiki tooteid "
               "\n2- soovin otsida toodet \n3- soovin analüüsida kategoriaid "
-              "\n4- soovin salvestada kokkuvõtet \n0- välju Soovin: ")
+              "\n4- soovin salvestada kokkuvõtet \n0- välju \nSoovin: ")
 
-    if a == "1":
-        file = open("müük.txt", "r")
-        content = file.read()
-        print(content)
+    file = open("müük.txt", "r")
+    content = file.read()
 
-    if a == "2":
+    while True:
+        if a == "1": #kuva kõik tehingud
+            print(content)
+            break
+
+        if a == "2": #otsi toodet
+            print("not ok")
+
+        if a == "3": #kategooriate analüüs
+            print("ok")
+
+        if a == "4": #salvesta kokkuvõte
+            print("kokkuvõte")
+        if a == "0":
+                print("Programm suletud!")
+                break
+
 
 
 if __name__ == '__main__':
