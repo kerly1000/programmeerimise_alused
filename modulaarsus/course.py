@@ -1,22 +1,28 @@
-"""Course module."""
-from typing import Dict
-from student import Student
-import statistics
+"""Course class with name and grades."""
+
+
 class Course:
+    """Course class."""
+
     def __init__(self, name: str):
         """Initialize course object with name."""
-        self.__name = name
-        self.__grades: Dict[Student, int] = {}
+        self.name = name
+        self.__grades = []
 
-    def get_grades(self) -> list [tuple[Student, int]]:
-        """Return a list of"""
-        return list(self.__grades.items())
+    def add_grade(self, student, grade: int):
+        """Add student grade to course."""
+        self.__grades.append((student, grade))
 
-    def get_average_grade(self) -> float:
-        """Return the average grade of al student grades."""
-        if len(self.__grades) == 0:
+    def get_grades(self) -> list[tuple[str, int]]:
+        """Return a list of tuples where first is student object and second is their grade."""
+        return self.__grades.copy()
+
+    def get_average_grade(self):
+        """Return average grade in course."""
+        if not self.__grades:
             return -1
-        return statistics.mean(self.__grades.values())
+        return sum(grade for _, grade in self.__grades) / len(self.__grades)
 
-    def __repr__(self) -> str:
-        return
+    def __repr__(self):
+        """Return course name."""
+        return self.name
