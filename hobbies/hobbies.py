@@ -1,5 +1,6 @@
 """Hobbies but OOP."""
 
+
 class Person:
     """
     Class for people.
@@ -10,7 +11,6 @@ class Person:
     list of hobbies.
     """
 
-
     def __init__(self, first_name: str, last_name: str, hobbies: list):
         """
         Person constructor.
@@ -19,8 +19,8 @@ class Person:
         :param last_name: last name of the person
         :param hobbies: list of hobbies
         """
-        self.__first_name = first_name
-        self.__last_name = last_name
+        self.first_name = first_name
+        self.last_name = last_name
         self.hobbies = hobbies
 
     @property
