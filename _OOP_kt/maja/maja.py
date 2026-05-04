@@ -7,78 +7,86 @@ class House:
         self.floors = floors
         self.address = address
 
-    def print_info(self):
+    def show_house_data(self):
         """Print info of the given house."""
         print(f"Address: {self.address}")
         print(f"Rooms: {self.rooms}")
         print(f"Floors: {self.floors}")
 
-    def renovate(self, new_rooms):
-        """Calculate new rooms after renovation."""
-        if new_rooms <= 0:
-            raise ValueError("Number of rooms must be greater than 0.")
-        print(f"Renovating house at {self.address}...")
-        self.rooms = new_rooms
-        print("Renovation completed.")
-
-    def evaluate(self):
+    def evaluate_house(self):
         """Evaluate price of the house."""
         # Simple base price calculation
         if self.rooms <= 0 or self.floors <= 0:
             raise ValueError("Invalid house data for valuation.")
-        price = (self.rooms * 10000) + (self.floors * 5000)
-        return price
+        house_value = (self.rooms * 10000) + (self.floors * 5000)
+        print(f"House value is: {house_value}")
+        return house_value
 
 
-class Villa(House):
-    """Villa class."""
 
-    def __init__(self, rooms, floors, address, luxury_factor):
-        """Villa class constructor."""
+    def renovate_house(self, new_rooms):
+        """Calculate new value after renovation."""
+        if new_rooms <= 0:
+            raise ValueError("Number of rooms must be greater than 0.")
+        print(f"Renovating house at {self.address}...")
+        self.rooms = new_rooms
+        new_value = (new_rooms * 10000) + (self.floors * 5000)
+        print(f"Renovation completed. New value is: {new_value}")
+        return new_value
+
+
+
+
+class Mansion(House):
+    """Mansion class."""
+
+    def __init__(self, rooms, floors, address, value_coefficient):
+        """Mansion class constructor."""
 
         super().__init__(rooms, floors, address)
-        self.luxury_factor = luxury_factor
+        self.value_coefficient = value_coefficient
 
     # Polymorphism: overridden method
-    def evaluate(self):
+    def evaluate_house(self):
         """Evaluate price of the given house."""
 
-        base_price = super().evaluate()
-        return base_price * self.luxury_factor
+        base_price = super().evaluate_house()
+        mansion_value =  int(base_price * self.value_coefficient)
+        print(f"Mansion value is: {mansion_value}")
+        return mansion_value
 
-    def print_info(self):
-        """Calculate luxory factor of the house."""
-
-        super().print_info()
-        print(f"Luxury factor: {self.luxury_factor}")
-
+    def renovate_house(self, new_rooms):
+        new_value = self.value_coefficient * ((new_rooms * 10000) + (self.floors * 5000))
+        return new_value
 
 if __name__ == '__main__':
     try:
-        house = House(3, 1, "Main Street 10")
-        villa = Villa(5, 2, "Ocean Drive 99", 2.5)
+        house = House(2, 1, "Kotka tee 8")
 
-        # Print info
-        house.print_info()
-        print("House value:", house.evaluate())
+        # Print house info
+        house.show_house_data()
+        house.evaluate_house()
+
+        house.renovate_house(4)
+        house.show_house_data()
         print()
 
-        villa.print_info()
-        print("Villa value:", villa.evaluate())
-        print()
+        mansion = Mansion(5, 2, "Merirahu tee 8", 2.5)
+
+        mansion.show_house_data()
+        mansion.evaluate_house()
 
         # Renovation
-        house.renovate(4)
-        print("New house value:", house.evaluate())
+        mansion.renovate_house(6)
         print()
 
-        # Polymorphism demo
-        buildings = [house, villa]
+        # Polymorphism
+        buildings = [house, mansion]
         for b in buildings:
-            print(f"{type(b).__name__} value:", b.evaluate())
+            print(f"{type(b).__name__} value:", b.evaluate_house())
 
         # Error example (uncomment to test)
-        # house.renovate(-2)
+        # house.renovate_house(-2)
 
     except ValueError as e:
         print("Error:", e)
