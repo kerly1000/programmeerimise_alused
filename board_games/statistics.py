@@ -6,10 +6,11 @@ from play_session import PlaySession
 class Statistics:
     """Statisticsclass"""
 
-    def __init__(self. filename: str):
-    self.__players : list[Player] = []
-    self.__games : list[Game] = []
-    self.__play_sessions : list[PlaySession] = []
+    def __init__(self, filename: str) -> str:
+
+        self.__players : list[Player] = []
+        self.__games : list[Game] = []
+        self.__play_sessions : list[PlaySession] = []
 
     def get(self, path: str):
         """REST style path to invoke action.
@@ -34,4 +35,4 @@ class Statistics:
         elif path == "/games":
             return list(map(lambda p: p.get_name(), self.__games))
 
-        else None
+        else: None
