@@ -1,0 +1,100 @@
+klass ja konstruktor
+
+class Klass
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    # self on viide objektile
+    # __init__ käivitud objekti loomisel
+
+meetod
+
+def meetod(self):
+    return self.a + self.b
+    # self on alati esimene argument
+    # kasuta returni, mitte ainult printi (print, return)
+
+klassimuutuja
+
+class Klass:
+    loendur = 0
+
+    def __init__(self):
+        klass.loendur += 1
+    # ühine kõikide objektide vahe
+    # kutsuda saab Klass.loendur
+
+pärimine
+
+class AlamKlass(BaasKlass):
+    def __init__(self, a, b, c):
+        super().__init__(a, b)
+        self.c = c
+    # super() kutsub baasklassi konstruktori
+
+polümorfism
+
+class A:
+    def f(self):
+        return "A"
+
+class B(A):
+    def f(self):
+        return "B"
+
+    obj = B()
+    print(obj.f())  -> "B"
+    # sama meetod, erinev käitumine
+
+polümorfism tsüklis
+
+objektid = [A(), B()]
+
+for o in objektid:
+    print (o.f())
+    # ei pea teadma tüüpi, püthon valib õige meetodi
+
+list objektidest
+
+asjad = []
+asjad.append(Klass(1, 2))
+    #saad hoida palju objekte
+
+meetod kõigi peal
+
+for o in asjad:
+    o.meetod()
+
+generaator
+
+summa = sum(1 for o in asjad if o.a > 10)
+    # lühem kui loenduriga tsükkel
+
+veakontroll
+
+if a <= 0:
+    raise ValueError("lubamatu väärtus")
+    või
+    except ValueError
+        print("Viga")
+
+str (ilus print)
+
+def __str__(self):
+    return f"{self.a}, {self.b}"
+
+    print(obj)
+
+KÕIGE TÄHTSAM
+
+objekti loomine- obj = Klass(1, 2)
+meetodi kasutus- obj.meetod
+pärimine- class B(A):
+override- def meetod(self):
+list+tsükkel- for o in list:
+
+
+
+
+
+
